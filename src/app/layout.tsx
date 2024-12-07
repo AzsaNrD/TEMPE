@@ -27,7 +27,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang='en'>
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased bg-neutral-100`}>
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased bg-neutral-50`}>
         <SidebarProvider>
           <AppSidebar />
           <main className='w-full'>
