@@ -220,14 +220,14 @@ const daftarMateriKuliah = [
 export default function MaterKuliah() {
   return (
     <div className='flex flex-col gap-8'>
-      <div className='flex justify-between items-center'>
+      <div className='flex lg:flex-row flex-col lg:justify-between lg:items-center gap-6 lg:gap-0'>
         <div>
           <h1 className='text-2xl font-semibold'>Materi Kuliah</h1>
           <p className='mt-2 text-neutral-600 text-sm'>
             Semua materi kuliah dari semester awal hingga akhir, tersedia dalam satu tempat!
           </p>
         </div>
-        <div>
+        <div className='ms-auto'>
           <Select>
             <SelectTrigger className='w-[150px]'>
               <SelectValue placeholder='Semester' />
@@ -244,7 +244,7 @@ export default function MaterKuliah() {
       </div>
       <div className='grid grid-cols-1 lg:grid-cols-2 gap-6'>
         {daftarMateriKuliah.map((item, index) => (
-          <div key={index} className='bg-white shadow rounded-md border border-neutral-200'>
+          <div key={index} className='bg-white shadow-sm rounded-md border border-neutral-200'>
             <div className='p-6'>
               <h2 className='text-xl font-semibold'>Semester {item.semester}</h2>
             </div>

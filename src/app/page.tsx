@@ -35,7 +35,7 @@ export default function Home() {
     <div>
       <div className='mb-7'>
         <h1 className='text-2xl font-semibold'>👋 Selamat Datang di TEMPE</h1>
-        <p className='mt-2 ms-2 text-neutral-600 text-sm'>
+        <p className='mt-2 text-neutral-600 text-sm'>
           Tugas Emang Perlu Dikerjain - Akses Informasi tugas kuliahmu dengan lebih mudah
         </p>
       </div>
@@ -43,7 +43,7 @@ export default function Home() {
       <div>
         {/* Tugas Mendesak dan Materi Terbaru */}
         <div className='grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6'>
-          <div className='bg-white rounded-lg border border-neutral-200 shadow p-6'>
+          <div className='bg-white rounded-lg border border-neutral-200 shadow-sm p-6'>
             {/* Tugas Mendesak */}
             <div className='flex justify-between'>
               <h2 className='font-medium text-xl mb-4'>Tugas Mendesak</h2>
@@ -53,7 +53,7 @@ export default function Home() {
             <p className='text-sm text-neutral-600'>Perlu diselesaikan minggu ini</p>
           </div>
 
-          <div className='bg-white rounded-lg border border-neutral-200 shadow p-6'>
+          <div className='bg-white rounded-lg border border-neutral-200 shadow-sm p-6'>
             {/* Tugas Materi terbaru */}
             <div className='flex justify-between'>
               <h2 className='font-medium text-xl mb-4'>Materi Terbaru</h2>
@@ -65,7 +65,7 @@ export default function Home() {
         </div>
 
         {/* TUGAS TERBARU */}
-        <div className='bg-white rounded-lg border border-neutral-200 shadow mb-6 p-6'>
+        <div className='bg-white rounded-lg border border-neutral-200 shadow-sm mb-6 p-6'>
           <div className='flex justify-between items-center mb-6'>
             <h2 className='font-medium text-xl'>🚀 Tugas Terbaru</h2>
             <Link href='/tugas' className='flex items-center gap-2 hover:underline'>
@@ -93,7 +93,7 @@ export default function Home() {
         </div>
       </div>
       {/* Pengumuman */}
-      <div className='bg-white rounded-lg border border-neutral-200 shadow mb-6 p-6'>
+      <div className='bg-white rounded-lg border border-neutral-200 shadow-sm mb-6 p-6'>
         <h2 className='font-medium text-xl mb-4'>📢 Pengumuman</h2>
         {daftarPengumuman.map((item) => (
           <div

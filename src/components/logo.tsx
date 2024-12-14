@@ -7,12 +7,19 @@ export default function Logo() {
       <div className='flex justify-center'>
         <Link href='/'>
           <div className='flex gap-2.5'>
-            <Image src='/images/icon_img.svg' alt='Logo' width={21} height={21} />
+            <Image
+              src='/images/icon_img.svg'
+              alt='Logo'
+              width={21}
+              height={21}
+              style={{ width: 'auto', height: 'auto' }}
+            />
             <Image
               src='/images/icon_text.svg'
               alt='Logo'
               width={153}
               height={45}
+              style={{ width: 'auto', height: 'auto' }}
               className='group-data-[collapsible=icon]:hidden'
             />
           </div>

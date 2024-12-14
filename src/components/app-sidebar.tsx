@@ -11,7 +11,7 @@ import {
   SidebarMenuItem,
   SidebarSeparator,
 } from '@/components/ui/sidebar';
-import { ClipboardIcon, FileText, Home } from 'lucide-react';
+import { ClipboardIcon, FileText, Home, LogIn } from 'lucide-react';
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 import Logo from './logo';
@@ -57,6 +57,21 @@ export function AppSidebar() {
                   </SidebarMenuButton>
                 </SidebarMenuItem>
               ))}
+            </SidebarMenu>
+          </SidebarGroupContent>
+        </SidebarGroup>
+        <SidebarSeparator />
+        <SidebarGroup>
+          <SidebarGroupContent>
+            <SidebarMenu>
+              <SidebarMenuItem>
+                <SidebarMenuButton isActive={pathname === '/masuk'} asChild>
+                  <Link href="/masuk">
+                  <LogIn />
+                  <span>Masuk</span>
+                  </Link>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
             </SidebarMenu>
           </SidebarGroupContent>
         </SidebarGroup>
