@@ -43,7 +43,7 @@ export function AppSidebar() {
         <Logo />
       </SidebarHeader>
       <SidebarContent>
-          <SidebarSeparator />
+        <SidebarSeparator />
         <SidebarGroup>
           <SidebarGroupContent>
             <SidebarMenu>

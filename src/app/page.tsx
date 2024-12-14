@@ -1,121 +1,111 @@
-import { Arrow } from "@radix-ui/react-tooltip";
-import { ArrowRight, Bell, Book, Clock } from "lucide-react";
-import Link from "next/link";
+import { ArrowRight, Bell, Book, Clock } from 'lucide-react';
+import Link from 'next/link';
+
+const daftarTugas = [
+  {
+    judul: 'Laporan Akhir IMK',
+    matkul: 'Interaksi Manusia dan Komputer',
+    tenggat: '30 September 2025',
+  },
+  {
+    judul: 'Laporan Akhir KDM',
+    matkul: 'Konsep Data Mining',
+    tenggat: '30 Januari 2025',
+  },
+  {
+    judul: 'Laporan Akhir Statistika',
+    matkul: 'Statistika',
+    tenggat: '02 Februari 2025',
+  },
+];
+
+const daftarPengumuman = [
+  {
+    judul: 'Pengumuman 1',
+    deskripsi: 'Deskripsi pengumuman 1',
+  },
+  {
+    judul: 'Pengumuman 2',
+    deskripsi: 'Deskripsi pengumuman 2',
+  },
+];
 
 export default function Home() {
   return (
     <div>
-      <div className="mb-7">
-        <h1 className="text-2xl font-semibold">👋 Selamat Datang di TEMPE</h1>
-        <p className="mt-2 ms-2 text-neutral-600">Tugas Emang Perlu Dikerjain - Akses Informasi tugas kuliahmu dengan lebih mudah</p>
+      <div className='mb-7'>
+        <h1 className='text-2xl font-semibold'>👋 Selamat Datang di TEMPE</h1>
+        <p className='mt-2 ms-2 text-neutral-600 text-sm'>
+          Tugas Emang Perlu Dikerjain - Akses Informasi tugas kuliahmu dengan lebih mudah
+        </p>
       </div>
 
       <div>
         {/* Tugas Mendesak dan Materi Terbaru */}
-        <div className="grid grid-cols-2 gap-6 mb-6">
-          <div className="bg-white rounded-lg border border-neutral-200 shadow"> {/* Tugas Mendesak */}
-            <div className="p-6">
-              <div className="flex justify-between">
-                <h2 className="font-medium text-xl mb-4">Tugas Mendesak</h2>
-                <Bell className="text-red-600" />
-              </div>
-              <h2 className="text-2xl font-bold mb-4" >3</h2>
-              <p className="text-base text-neutral-600">Perlu diselesaikan minggu ini</p>
+        <div className='grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6'>
+          <div className='bg-white rounded-lg border border-neutral-200 shadow p-6'>
+            {/* Tugas Mendesak */}
+            <div className='flex justify-between'>
+              <h2 className='font-medium text-xl mb-4'>Tugas Mendesak</h2>
+              <Bell className='text-red-600' />
             </div>
+            <h2 className='text-2xl font-bold mb-4'>3</h2>
+            <p className='text-sm text-neutral-600'>Perlu diselesaikan minggu ini</p>
           </div>
 
-          <div className="bg-white rounded-lg border border-neutral-200 shadow"> {/* Tugas Materi terbaru */}
-            <div className="p-6">
-              <div className="flex justify-between">
-                <h2 className="font-medium text-xl mb-4">Tugas Mendesak</h2>
-                <Book className="text-blue-500" />
-              </div>
-              <h2 className="text-2xl font-bold mb-4" >5</h2>
-              <p className="text-base text-neutral-600">Materi telah diupload</p>
+          <div className='bg-white rounded-lg border border-neutral-200 shadow p-6'>
+            {/* Tugas Materi terbaru */}
+            <div className='flex justify-between'>
+              <h2 className='font-medium text-xl mb-4'>Materi Terbaru</h2>
+              <Book className='text-blue-500' />
             </div>
+            <h2 className='text-2xl font-bold mb-4'>5</h2>
+            <p className='text-sm text-neutral-600'>Materi telah diunggah</p>
           </div>
-
         </div>
 
         {/* TUGAS TERBARU */}
-        <div className="bg-white rounded-lg border border-neutral-200 shadow mb-6">
-          <div className="p-6 ">
-            <div className="flex justify-between">
-              <div>
-                <h2 className="font-medium text-xl mb-4">🚀 Tugas Terbaru</h2>
-             </div>
-            <div className="flex">
-              <Link href="/tugas" className="flex">
-                  
-                 <span>Lihat Semua</span>
-                 <ArrowRight className="text-neutral-600" />
-              </Link>
-            </div>
-
-            </div>
-
-            <div className="bg-white rounded-lg border border-neutral-200  flex p-4 mb-4">
-              <div>
-                <h3 className="text-base font-medium">Laporan Pendahuluan Konsep Data Mining</h3>
-                <p className="text-sm text-neutral-600">Konsep Data Mining</p>
+        <div className='bg-white rounded-lg border border-neutral-200 shadow mb-6 p-6'>
+          <div className='flex justify-between items-center mb-6'>
+            <h2 className='font-medium text-xl'>🚀 Tugas Terbaru</h2>
+            <Link href='/tugas' className='flex items-center gap-2 hover:underline'>
+              <span className='font-medium text-sm text-neutral-600'>Lihat Semua</span>
+              <ArrowRight size={16} className='text-neutral-600' />
+            </Link>
+          </div>
+          {daftarTugas.map((item) => (
+            <div
+              key={item.judul}
+              className='bg-white rounded-md border border-neutral-200 flex flex-col sm:flex-row justify-between p-4 mb-4'
+            >
+              <div className='flex flex-col gap-2'>
+                <h3 className='font-medium'>{item.judul}</h3>
+                <p className='text-sm text-neutral-600'>{item.matkul}</p>
               </div>
-              <div className="flex items-center gap-2 ml-auto">
-                <Clock className="text-neutral-600"/>
-                <p className="text-sm text-neutral-600">28 November 2024</p>
+              <div className='flex items-center gap-2 mt-2'>
+                <Clock size={16} strokeWidth={3} className='text-neutral-600 sm:hidden' />
+                <p className='text-sm text-neutral-600  sm:font-normal'>
+                  {item.tenggat}
+                </p>
               </div>
             </div>
-
-            <div className="bg-white rounded-lg border border-neutral-200  flex p-4 mb-4">
-              <div>
-                <h3 className="text-base font-medium">Laporan Akhir Konsep Data Mining</h3>
-                <p className="text-sm text-neutral-600">Konsep Data Mining</p>
-              </div>
-              <div className="flex items-center gap-2 ml-auto">
-                <Clock className="text-neutral-600"/>
-                <p className="text-sm text-neutral-600">28 November 2024</p>
-              </div>
-            </div>
-
-            <div className="bg-white rounded-lg border border-neutral-200  flex p-4">
-              <div>
-                <h3 className="text-base font-medium">Project Website</h3>
-                <p className="text-sm text-neutral-600">Pemrograman Berbasis Web</p>
-              </div>
-              <div className="flex items-center gap-2 ml-auto">
-                <Clock className="text-neutral-600"/>
-                <p className="text-sm text-neutral-600">09 Desember 2024</p>
-              </div>
+          ))}
+        </div>
+      </div>
+      {/* Pengumuman */}
+      <div className='bg-white rounded-lg border border-neutral-200 shadow mb-6 p-6'>
+        <h2 className='font-medium text-xl mb-4'>📢 Pengumuman</h2>
+        {daftarPengumuman.map((item) => (
+          <div
+            key={item.judul}
+            className='bg-white rounded-md border border-neutral-200 flex justify-between p-4 mb-4'
+          >
+            <div className='flex flex-col gap-2'>
+              <h3 className='font-medium'>{item.judul}</h3>
+              <p className='text-sm text-neutral-600'>{item.deskripsi}</p>
             </div>
           </div>
-        </div>
-
-        {/* Pengumuman */}
-        <div className="bg-white rounded-lg border border-neutral-200 shadow mb-6 p-4">
-          
-          <div>
-          <h2 className="font-medium text-xl mb-4">📢 Pengumuman</h2>
-          </div>
-
-          <div className="bg-white rounded-lg border border-neutral-200  flex p-4 mb-4">
-              <div>
-                <h3 className="text-base font-medium">UAS Sebentar Lagi!...</h3>
-                <p className="text-sm text-neutral-600">Persiapkan diri untuk Ujian Akhir Semester yang akan dimulai dalam 3 minggu</p>
-              </div>
-            </div>
-
-            <div className="bg-white rounded-lg border border-neutral-200  flex p-4 mb-4">
-              <div>
-                <h3 className="text-base font-medium">Maintenance Website</h3>
-                <p className="text-sm text-neutral-600">Website akan maintenance pada tanggal 30 November 2024</p>
-              </div>
-            </div>
-        </div>
-
-        <footer className="text-left py-5 text-sm text-gray-600">
-          <div className="w-full h-px bg-neutral-200 mb-3"></div>
-          <p className="text-sm text-black">© 2024 by IMK Team</p>
-        </footer>
-
+        ))}
       </div>
     </div>
   );
