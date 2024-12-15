@@ -11,10 +11,12 @@ import {
   SidebarMenuItem,
   SidebarSeparator,
 } from '@/components/ui/sidebar';
-import { ClipboardIcon, FileText, Home, LogIn } from 'lucide-react';
+import { ClipboardIcon, FileText, Home, LogIn, LogOut } from 'lucide-react';
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 import Logo from './logo';
+import { signOut, useSession } from 'next-auth/react';
+import { Skeleton } from '@/components/ui/skeleton';
 
 // Menu items.
 const items = [
@@ -37,6 +39,8 @@ const items = [
 
 export function AppSidebar() {
   const pathname = usePathname();
+  const { data: session, status } = useSession();
+
   return (
     <Sidebar collapsible='icon'>
       <SidebarHeader>
@@ -65,12 +69,28 @@ export function AppSidebar() {
           <SidebarGroupContent>
             <SidebarMenu>
               <SidebarMenuItem>
-                <SidebarMenuButton isActive={pathname === '/masuk'} asChild>
-                  <Link href="/masuk">
-                  <LogIn />
-                  <span>Masuk</span>
-                  </Link>
-                </SidebarMenuButton>
+              {status === 'loading' ? (
+                    <Skeleton className='h-10 w-full bg-neutral-200' />
+                ) : session ? (
+                  <SidebarMenuButton
+                    className="cursor-pointer"
+                    variant="destructive"
+                    onClick={() => signOut()}
+                    asChild
+                  >
+                    <div className="text-red-800">
+                      <LogOut />
+                      <span>Keluar</span>
+                    </div>
+                  </SidebarMenuButton>
+                ) : (
+                  <SidebarMenuButton isActive={pathname === '/masuk'} asChild>
+                    <Link href="/masuk">
+                      <LogIn />
+                      <span>Masuk</span>
+                    </Link>
+                  </SidebarMenuButton>
+                )}
               </SidebarMenuItem>
             </SidebarMenu>
           </SidebarGroupContent>
