@@ -79,7 +79,7 @@ export default function Tugas() {
       </div>
       <div className='grid grid-cols-1 lg:grid-cols-2 gap-6'>
         {daftarTugas.map((item, index) => (
-          <div key={index} className='bg-white shadow rounded-lg border border-neutral-200'>
+          <div key={index} className='bg-white md:shadow rounded-md border border-neutral-200'>
             <div className='p-6'>
               <h2 className='text-xl font-medium'>{item.judul}</h2>
               <div className='flex gap-2 items-center mt-2'>

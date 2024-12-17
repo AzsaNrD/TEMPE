@@ -11,7 +11,7 @@ import {
   SidebarMenuItem,
   SidebarSeparator,
 } from '@/components/ui/sidebar';
-import { ClipboardIcon, FileText, Home, LogIn, LogOut } from 'lucide-react';
+import { ClipboardIcon, FileText, Home, LogIn, LogOut, User } from 'lucide-react';
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 import Logo from './logo';
@@ -64,28 +64,47 @@ export function AppSidebar() {
             </SidebarMenu>
           </SidebarGroupContent>
         </SidebarGroup>
+        {status === 'authenticated' && (
+          <>
+            <SidebarSeparator />
+            <SidebarGroup>
+              <SidebarGroupContent>
+                <SidebarMenu>
+                  <SidebarMenuItem>
+                    <SidebarMenuButton isActive={pathname === '/profile'} asChild>
+                      <Link href='/profile'>
+                        <User />
+                        <span>Profile</span>
+                      </Link>
+                    </SidebarMenuButton>
+                  </SidebarMenuItem>
+                </SidebarMenu>
+              </SidebarGroupContent>
+            </SidebarGroup>
+          </>
+        )}
         <SidebarSeparator />
         <SidebarGroup>
           <SidebarGroupContent>
             <SidebarMenu>
               <SidebarMenuItem>
-              {status === 'loading' ? (
-                    <Skeleton className='h-10 w-full bg-neutral-200' />
+                {status === 'loading' ? (
+                  <Skeleton className='h-10 w-full bg-neutral-200' />
                 ) : session ? (
                   <SidebarMenuButton
-                    className="cursor-pointer"
-                    variant="destructive"
+                    className='cursor-pointer'
+                    variant='destructive'
                     onClick={() => signOut()}
                     asChild
                   >
-                    <div className="text-red-800">
+                    <div className='text-red-800'>
                       <LogOut />
                       <span>Keluar</span>
                     </div>
                   </SidebarMenuButton>
                 ) : (
                   <SidebarMenuButton isActive={pathname === '/masuk'} asChild>
-                    <Link href="/masuk">
+                    <Link href='/masuk'>
                       <LogIn />
                       <span>Masuk</span>
                     </Link>

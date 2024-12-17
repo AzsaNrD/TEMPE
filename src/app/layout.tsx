@@ -4,6 +4,7 @@ import './globals.css';
 import { SidebarProvider, SidebarTrigger } from '@/components/ui/sidebar';
 import { AppSidebar } from '@/components/app-sidebar';
 import { SessionProvider } from 'next-auth/react';
+import { Toaster } from '@/components/ui/toaster';
 
 const geistSans = localFont({
   src: '../fonts/GeistVF.woff',
@@ -34,12 +35,13 @@ export default function RootLayout({
             <AppSidebar />
             <main className='w-full'>
               <SidebarTrigger />
-              <div className='px-5 sm:px-6 py-3'>{children}</div>
+              <div className='px-3 sm:px-6 py-3'>{children}</div>
               <footer className='p-6 text-sm text-neutral-400'>
                 TEMPE © {new Date().getFullYear()}. All rights reserved
               </footer>
             </main>
           </SidebarProvider>
+          <Toaster />
         </SessionProvider>
       </body>
     </html>

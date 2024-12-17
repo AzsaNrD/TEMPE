@@ -16,12 +16,19 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         if (!credentials?.npm || !credentials?.password)
           throw new Error('NPM dan password harus diisi.');
 
-        const user = await db.select().from(users).where(eq(users.npm, credentials.npm as string)).execute();
+        const user = await db
+          .select()
+          .from(users)
+          .where(eq(users.npm, credentials.npm as string))
+          .execute();
         if (!user || user.length === 0) {
           throw new Error('NPM / Password salah.');
         }
 
-        const isPasswordValid = await verifyPassword(credentials.password as string, user[0].password);
+        const isPasswordValid = await verifyPassword(
+          credentials.password as string,
+          user[0].password,
+        );
         if (!isPasswordValid) {
           throw new Error('NPM / Password salah.');
         }
@@ -66,7 +73,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     },
   },
   pages: {
-    signIn: '/masuk'
+    signIn: '/masuk',
   },
   secret: process.env.NEXTAUTH_SECRET,
 });

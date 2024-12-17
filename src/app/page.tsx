@@ -1,3 +1,4 @@
+import { getUserByNpm } from '@/actions/user';
 import { auth } from '@/lib/auth';
 import { ArrowRight, Bell, Book, Clock } from 'lucide-react';
 import Link from 'next/link';
@@ -33,11 +34,12 @@ const daftarPengumuman = [
 
 export default async function Home() {
   const session = await auth();
-  console.log(session);
+  const { data } = await getUserByNpm(session?.user.npm as string);
+
   return (
     <div>
       <div className='mb-7'>
-        <h1 className='text-2xl font-semibold'>👋 Selamat Datang di TEMPE! {session?.user.nama}</h1>
+        <h1 className='text-2xl font-semibold'>👋 Selamat Datang di TEMPE! {data?.user.nama}</h1>
         <p className='mt-2 text-neutral-600 text-sm'>
           Tugas Emang Perlu Dikerjain - Akses Informasi tugas kuliahmu dengan lebih mudah
         </p>
@@ -46,7 +48,7 @@ export default async function Home() {
       <div>
         {/* Tugas Mendesak dan Materi Terbaru */}
         <div className='grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6'>
-          <div className='bg-white rounded-lg border border-neutral-200 shadow p-6'>
+          <div className='bg-white rounded-lg border border-neutral-200 md:shadow p-6'>
             {/* Tugas Mendesak */}
             <div className='flex justify-between'>
               <h2 className='font-medium text-xl mb-4'>Tugas Mendesak</h2>
@@ -56,7 +58,7 @@ export default async function Home() {
             <p className='text-sm text-neutral-600'>Perlu diselesaikan minggu ini</p>
           </div>
 
-          <div className='bg-white rounded-lg border border-neutral-200 shadow p-6'>
+          <div className='bg-white rounded-lg border border-neutral-200 md:shadow p-6'>
             {/* Tugas Materi terbaru */}
             <div className='flex justify-between'>
               <h2 className='font-medium text-xl mb-4'>Materi Terbaru</h2>
@@ -68,7 +70,7 @@ export default async function Home() {
         </div>
 
         {/* TUGAS TERBARU */}
-        <div className='bg-white rounded-lg border border-neutral-200 shadow mb-6 p-6'>
+        <div className='bg-white rounded-lg border border-neutral-200 md:shadow mb-6 p-6'>
           <div className='flex justify-between items-center mb-6'>
             <h2 className='font-medium text-xl'>🚀 Tugas Terbaru</h2>
             <Link href='/tugas' className='flex items-center gap-2 hover:underline'>
@@ -96,7 +98,7 @@ export default async function Home() {
         </div>
       </div>
       {/* Pengumuman */}
-      <div className='bg-white rounded-lg border border-neutral-200 shadow mb-6 p-6'>
+      <div className='bg-white rounded-lg border border-neutral-200 md:shadow mb-6 p-6'>
         <h2 className='font-medium text-xl mb-4'>📢 Pengumuman</h2>
         {daftarPengumuman.map((item) => (
           <div

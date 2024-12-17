@@ -244,7 +244,7 @@ export default function MaterKuliah() {
       </div>
       <div className='grid grid-cols-1 lg:grid-cols-2 gap-6'>
         {daftarMateriKuliah.map((item, index) => (
-          <div key={index} className='bg-white shadow rounded-lg border border-neutral-200'>
+          <div key={index} className='bg-white md:shadow rounded-lg border border-neutral-200'>
             <div className='p-6'>
               <h2 className='text-xl font-semibold'>Semester {item.semester}</h2>
             </div>

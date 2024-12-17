@@ -1,14 +1,13 @@
-// nextauth.d.ts
 import { DefaultSession } from 'next-auth';
 
 declare module 'next-auth' {
   interface User {
     npm: string;
-    nama: string; // Pastikan ini sesuai dengan yang Anda inginkan
+    nama: string;
     email: string;
     role: string;
     gender: string;
-    nama: string; // Tambahkan nama di sini
+    nama: string;
   }
 
   interface Session {

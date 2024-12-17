@@ -68,7 +68,7 @@ export default function LoginForm() {
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
-          className='w-full sm:max-w-2xl bg-white p-6 border border-neutral-200 rounded-lg flex flex-col gap-6 shadow'
+          className='w-full sm:max-w-2xl bg-white p-6 border border-neutral-200 rounded-lg flex flex-col gap-6 md:shadow'
         >
           <FormField
             control={form.control}
