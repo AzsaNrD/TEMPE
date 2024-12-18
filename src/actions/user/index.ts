@@ -6,12 +6,7 @@ import { db } from '@/db/drizzle';
 import { users } from '@/db/schema/users';
 import { User } from '@/types/user';
 import { hashPassword, verifyPassword } from '@/lib/bcrypt';
-
-interface ActionResponse<T> {
-  success: boolean;
-  data: T | null;
-  message?: string;
-}
+import { ActionResponse } from '@/types/response';
 
 export async function getUserByNpm(npm: string): Promise<ActionResponse<{ user: User }>> {
   try {
@@ -94,6 +89,8 @@ export async function updateUserPassword(
       .where(eq(users.npm, npm));
 
     if (!updatedUser.rowCount) throw new Error('Gagal memperbarui password.');
+
+    revalidatePath('/profile');
 
     return {
       success: true,

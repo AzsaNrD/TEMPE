@@ -1,7 +1,7 @@
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';
 import { User } from '@/types/user';
-import AccountForm from '../form/account';
-import ResetPasswordForm from '../form/reset-password';
+import AccountForm from '@/components/form/account';
+import ResetPasswordForm from '@/components/form/auth/reset-password';
 
 export default function ProfileTabs({ user }: { user: User }) {
   return (

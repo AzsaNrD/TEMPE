@@ -1,269 +1,41 @@
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from '@/components/ui/select';
-import { Separator } from '@/components/ui/separator';
-import { Folder } from 'lucide-react';
-import Link from 'next/link';
+import { getSemesters, getSemestersWithCourses } from '@/actions/semester';
+import { Header, MateriList, DropdownTambah, SemesterSelect } from '@/components/materi';
 
-const daftarMateriKuliah = [
-  {
-    semester: 1,
-    materi: [
-      {
-        nama: 'Matematika Lanjut 2 **',
-        link: '#',
-      },
-      {
-        nama: 'Matematika Sistem Informasi 2',
-        link: '#',
-      },
-      {
-        nama: 'Pengantar Akuntansi Keuangan 1',
-        link: '#',
-      },
-      {
-        nama: 'Sistem Basis Data 2 */**',
-        link: '#',
-      },
-      {
-        nama: 'Manajemen & SIM 2 *',
-        link: '#',
-      },
-      {
-        nama: 'Manajemen Layanan Sistem Informasi',
-        link: '#',
-      },
-      {
-        nama: 'Bahasa Indonesia 1',
-        link: '#',
-      },
-      {
-        nama: 'Pemrograman Berorientasi Objek**',
-        link: '#',
-      },
-      {
-        nama: 'Sistem Operasi **',
-        link: '#',
-      },
-    ],
-  },
-  {
-    semester: 2,
-    materi: [
-      {
-        nama: 'Matematika Lanjut 2 **',
-        link: '#',
-      },
-      {
-        nama: 'Matematika Sistem Informasi 2',
-        link: '#',
-      },
-      {
-        nama: 'Pengantar Akuntansi Keuangan 1',
-        link: '#',
-      },
-      {
-        nama: 'Sistem Basis Data 2 */**',
-        link: '#',
-      },
-      {
-        nama: 'Manajemen & SIM 2 *',
-        link: '#',
-      },
-      {
-        nama: 'Manajemen Layanan Sistem Informasi',
-        link: '#',
-      },
-      {
-        nama: 'Bahasa Indonesia 1',
-        link: '#',
-      },
-      {
-        nama: 'Pemrograman Berorientasi Objek**',
-        link: '#',
-      },
-      {
-        nama: 'Sistem Operasi **',
-        link: '#',
-      },
-    ],
-  },
-  {
-    semester: 3,
-    materi: [
-      {
-        nama: 'Matematika Lanjut 2 **',
-        link: '#',
-      },
-      {
-        nama: 'Matematika Sistem Informasi 2',
-        link: '#',
-      },
-      {
-        nama: 'Pengantar Akuntansi Keuangan 1',
-        link: '#',
-      },
-      {
-        nama: 'Sistem Basis Data 2 */**',
-        link: '#',
-      },
-      {
-        nama: 'Manajemen & SIM 2 *',
-        link: '#',
-      },
-      {
-        nama: 'Manajemen Layanan Sistem Informasi',
-        link: '#',
-      },
-      {
-        nama: 'Bahasa Indonesia 1',
-        link: '#',
-      },
-      {
-        nama: 'Pemrograman Berorientasi Objek**',
-        link: '#',
-      },
-      {
-        nama: 'Sistem Operasi **',
-        link: '#',
-      },
-    ],
-  },
-  {
-    semester: 4,
-    materi: [
-      {
-        nama: 'Matematika Lanjut 2 **',
-        link: '#',
-      },
-      {
-        nama: 'Matematika Sistem Informasi 2',
-        link: '#',
-      },
-      {
-        nama: 'Pengantar Akuntansi Keuangan 1',
-        link: '#',
-      },
-      {
-        nama: 'Sistem Basis Data 2 */**',
-        link: '#',
-      },
-      {
-        nama: 'Manajemen & SIM 2 *',
-        link: '#',
-      },
-      {
-        nama: 'Manajemen Layanan Sistem Informasi',
-        link: '#',
-      },
-      {
-        nama: 'Bahasa Indonesia 1',
-        link: '#',
-      },
-      {
-        nama: 'Pemrograman Berorientasi Objek**',
-        link: '#',
-      },
-      {
-        nama: 'Sistem Operasi **',
-        link: '#',
-      },
-    ],
-  },
-  {
-    semester: 5,
-    materi: [
-      {
-        nama: 'Matematika Lanjut 2 **',
-        link: '#',
-      },
-      {
-        nama: 'Matematika Sistem Informasi 2',
-        link: '#',
-      },
-      {
-        nama: 'Pengantar Akuntansi Keuangan 1',
-        link: '#',
-      },
-      {
-        nama: 'Sistem Basis Data 2 */**',
-        link: '#',
-      },
-      {
-        nama: 'Manajemen & SIM 2 *',
-        link: '#',
-      },
-      {
-        nama: 'Manajemen Layanan Sistem Informasi',
-        link: '#',
-      },
-      {
-        nama: 'Bahasa Indonesia 1',
-        link: '#',
-      },
-      {
-        nama: 'Pemrograman Berorientasi Objek**',
-        link: '#',
-      },
-      {
-        nama: 'Sistem Operasi **',
-        link: '#',
-      },
-    ],
-  },
-];
+export default async function MaterKuliah(props: {
+  searchParams?: Promise<{
+    sem?: string;
+  }>;
+}) {
+  const searchParams = await props.searchParams;
+  const semester = searchParams?.sem || '';
 
-export default function MaterKuliah() {
+  const { data: semesters } = await getSemesters();
+  const { data: semestersWithCourses } = await getSemestersWithCourses();
+
+  const filteredSemestersWithCourses =
+    semester === 'default' || !semester
+      ? semestersWithCourses?.semesters
+      : semestersWithCourses?.semesters.filter((s) => s.semester === Number(semester));
+
   return (
     <div className='flex flex-col gap-8'>
-      <div className='flex lg:flex-row flex-col lg:justify-between lg:items-center gap-6 lg:gap-0'>
-        <div>
-          <h1 className='text-2xl font-semibold'>Materi Kuliah</h1>
-          <p className='mt-2 text-neutral-600 text-sm'>
-            Semua materi kuliah dari semester awal hingga akhir, tersedia dalam satu tempat!
-          </p>
-        </div>
-        <div className='ms-auto'>
-          <Select>
-            <SelectTrigger className='w-[150px]'>
-              <SelectValue placeholder='Semester' />
-            </SelectTrigger>
-            <SelectContent>
-              {[1, 2, 3, 4, 5].map((item) => (
-                <SelectItem key={item} value={`${item}`}>
-                  Semester {item}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
+      <div className='flex lg:flex-row flex-col lg:justify-between lg:items-center gap-6'>
+        <Header />
+        <div className='flex gap-2'>
+          {semesters?.semesters && (
+            <>
+              <SemesterSelect semesters={semesters.semesters} />
+              <DropdownTambah semesters={semesters.semesters} />
+            </>
+          )}
         </div>
       </div>
-      <div className='grid grid-cols-1 lg:grid-cols-2 gap-6'>
-        {daftarMateriKuliah.map((item, index) => (
-          <div key={index} className='bg-white md:shadow rounded-lg border border-neutral-200'>
-            <div className='p-6'>
-              <h2 className='text-xl font-semibold'>Semester {item.semester}</h2>
-            </div>
-            <Separator />
-            <div className='px-6 py-6 flex flex-col gap-4'>
-              {item.materi.map((materi) => (
-                <Link
-                  key={materi.nama}
-                  href={materi.link}
-                  className='hover:underline flex items-center gap-2 text-neutral-600 text-sm'
-                >
-                  <Folder size={20} />
-                  <span>{materi.nama} Materi</span>
-                </Link>
-              ))}
-            </div>
-          </div>
-        ))}
-      </div>
+      {filteredSemestersWithCourses && (
+        <MateriList
+          semesters={semesters?.semesters}
+          daftarMateriKuliah={filteredSemestersWithCourses}
+        />
+      )}
     </div>
   );
 }

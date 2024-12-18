@@ -93,7 +93,7 @@ export default function PasswordForm({ npm }: { npm: string }) {
               <FormItem>
                 <FormLabel>Password Lama</FormLabel>
                 <FormControl>
-                  <Input type='password' placeholder='Masukkan password lama...' {...field} />
+                  <Input type='password' autoComplete='current-password' placeholder='Masukkan password lama...' {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -107,7 +107,7 @@ export default function PasswordForm({ npm }: { npm: string }) {
               <FormItem>
                 <FormLabel>Password Baru</FormLabel>
                 <FormControl>
-                  <Input type='password' placeholder='Masukkan password baru...' {...field} />
+                  <Input type='password' autoComplete='new-password' placeholder='Masukkan password baru...' {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -121,7 +121,7 @@ export default function PasswordForm({ npm }: { npm: string }) {
               <FormItem>
                 <FormLabel>Konfirmasi Password</FormLabel>
                 <FormControl>
-                  <Input type='password' placeholder='Ulangi password baru...' {...field} />
+                  <Input type='password' autoComplete='new-password' placeholder='Ulangi password baru...' {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>

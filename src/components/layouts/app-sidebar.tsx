@@ -14,7 +14,7 @@ import {
 import { ClipboardIcon, FileText, Home, LogIn, LogOut, User } from 'lucide-react';
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
-import Logo from './logo';
+import Logo from '@/components/ui/logo';
 import { signOut, useSession } from 'next-auth/react';
 import { Skeleton } from '@/components/ui/skeleton';
 

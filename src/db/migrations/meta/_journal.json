@@ -8,6 +8,20 @@
       "when": 1734232248308,
       "tag": "0000_create_table_user",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1734407554158,
+      "tag": "0001_create_table_semesters_and_courses",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1734524450613,
+      "tag": "0002_add_unique_constraint_to_course_name",
+      "breakpoints": true
     }
   ]
 }
