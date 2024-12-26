@@ -33,10 +33,12 @@ export default function RootLayout({
         <SessionProvider>
           <SidebarProvider>
             <AppSidebar />
-            <main className='w-full'>
-              <SidebarTrigger />
+            <main className='w-full min-h-dvh grid grid-rows-[auto_1fr_auto]'>
+              <div className='px-3 sm:p-0 pt-3 w-full flex justify-end sm:justify-start'>
+                <SidebarTrigger />
+              </div>
               <div className='px-3 sm:px-6 py-3'>{children}</div>
-              <footer className='p-6 text-sm text-neutral-400'>
+              <footer className='px-3 sm:px-6 py-3 text-sm text-neutral-500'>
                 TEMPE © {new Date().getFullYear()}. All rights reserved
               </footer>
             </main>

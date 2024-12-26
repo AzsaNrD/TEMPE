@@ -1,0 +1,1 @@
+ALTER TABLE "assignments" ALTER COLUMN "link" DROP NOT NULL;

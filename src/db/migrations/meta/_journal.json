@@ -22,6 +22,41 @@
       "when": 1734524450613,
       "tag": "0002_add_unique_constraint_to_course_name",
       "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1734579193992,
+      "tag": "0003_create_table_assignments",
+      "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "7",
+      "when": 1734579979408,
+      "tag": "0004_create_table_assignments_status",
+      "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "7",
+      "when": 1734580273581,
+      "tag": "0005_alter_assignment_status_userid_to_varchar",
+      "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "7",
+      "when": 1734835472580,
+      "tag": "0006_alter_assignment_link_to_null",
+      "breakpoints": true
+    },
+    {
+      "idx": 7,
+      "version": "7",
+      "when": 1734964488228,
+      "tag": "0007_add_on_delete_cascade_to_assignments_status",
+      "breakpoints": true
     }
   ]
 }

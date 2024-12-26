@@ -1,0 +1,1 @@
+ALTER TABLE "assignments_status" ALTER COLUMN "user_id" SET DATA TYPE varchar(8);

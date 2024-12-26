@@ -18,7 +18,6 @@ import Logo from '@/components/ui/logo';
 import { signOut, useSession } from 'next-auth/react';
 import { Skeleton } from '@/components/ui/skeleton';
 
-// Menu items.
 const items = [
   {
     title: 'Beranda',

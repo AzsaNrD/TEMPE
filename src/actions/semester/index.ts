@@ -14,7 +14,7 @@ export async function insertSemester(
   data: { semester: number },
 ): Promise<ActionResponse<string>> {
   try {
-    await validateAdminOrDosen(npm);
+    await validateAdminOrDosen();
     await db.insert(semesters).values(data).returning();
 
     revalidatePath('/mata-kuliah');
@@ -103,7 +103,7 @@ export async function deleteSemester(
   semesterId: number,
 ): Promise<ActionResponse<string>> {
   try {
-    await validateAdminOrDosen(npm);
+    await validateAdminOrDosen();
 
     const hasCourses = await db
       .select()

@@ -68,7 +68,7 @@ export default function DropdownTambah({ semesters }: DropdownTambahProps) {
               </span>
             </DropdownMenuItem>
           </DialogTrigger>
-          <DialogContent inert={false}>
+          <DialogContent>
             <DialogHeader>
               <DialogTitle>Tambah Materi Kuliah</DialogTitle>
               <DialogDescription>

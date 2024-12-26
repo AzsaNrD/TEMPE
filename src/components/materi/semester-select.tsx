@@ -39,7 +39,7 @@ export default function SemesterSelect({ semesters }: SemesterSelectProps) {
 
   return (
     <Select onValueChange={handleSelectChange} value={selectedSemester}>
-      <SelectTrigger className='w-[150px]'>
+      <SelectTrigger className='sm:w-[150px]'>
         <SelectValue placeholder='Pilih Semester' />
       </SelectTrigger>
       <SelectContent>

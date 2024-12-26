@@ -14,7 +14,7 @@ import {
 import { useToast } from '@/hooks/use-toast';
 import { Semester } from '@/types/semester';
 import { Trash } from 'lucide-react';
-import { deleteSemester } from '@/actions/semester'; // Import fungsi deleteSemester
+import { deleteSemester } from '@/actions/semester';
 import { useSession } from 'next-auth/react';
 import { useSearchParams, usePathname, useRouter } from 'next/navigation';
 
