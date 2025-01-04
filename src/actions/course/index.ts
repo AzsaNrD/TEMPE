@@ -6,7 +6,7 @@ import { Course } from '@/types/course';
 import { ActionResponse } from '@/types/response';
 import { revalidatePath } from 'next/cache';
 import { validateAdminOrDosen } from '../validations/access';
-import { asc, eq, sql } from 'drizzle-orm';
+import { asc, count, eq, sql } from 'drizzle-orm';
 
 export async function insertCourse(
   npm: string,
@@ -42,6 +42,29 @@ export async function getCourses(): Promise<ActionResponse<Course[]>> {
       success: true,
       data: result,
       message: 'Berhasil mendapatkan daftar mata kuliah.',
+    };
+  } catch (e) {
+    const error = e as Error;
+
+    return {
+      success: false,
+      data: null,
+      message: error.message,
+    };
+  }
+}
+
+export async function getCountLatestCourses(): Promise<ActionResponse<{ count: number }[]>> {
+  try {
+    const result = await db
+      .select({ count: count() })
+      .from(courses)
+      .where(sql`DATE(courses.updated_at) >= DATE_TRUNC('week', CURRENT_DATE)`);
+
+    return {
+      success: true,
+      data: result,
+      message: 'Berhasil mendapatkan total daftar mata kuliah terbaru.',
     };
   } catch (e) {
     const error = e as Error;

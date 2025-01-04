@@ -7,7 +7,7 @@ import { ActionResponse } from '@/types/response';
 import { revalidatePath } from 'next/cache';
 import { validateAdminOrDosen } from '../validations/access';
 import { Assignment, AssignmentWithCourse, AssignmentWithStatus } from '@/types/assignment';
-import { and, asc, eq, ilike, or, sql, SQL } from 'drizzle-orm';
+import { and, asc, count, desc, eq, ilike, or, sql, SQL } from 'drizzle-orm';
 import { assignmentsStatus } from '@/db/schema/assignments-status';
 import { courses } from '@/db/schema';
 import { auth } from '@/lib/auth';
@@ -59,6 +59,71 @@ export async function insertAssignment(
         message: 'Tugas dengan data ini sudah ada.',
       };
     }
+
+    return {
+      success: false,
+      data: null,
+      message: error.message,
+    };
+  }
+}
+
+export async function getCountUrgentAssignments(): Promise<ActionResponse<{ count: number }[]>> {
+  try {
+    const result = await db
+      .select({ count: count() })
+      .from(assignments)
+      .where(
+        and(
+          sql`DATE(assignments.deadline) >= DATE_TRUNC('week', CURRENT_DATE)`,
+          sql`DATE(assignments.deadline) <= DATE_TRUNC('week', CURRENT_DATE) + INTERVAL '6 days'`,
+        ),
+      );
+
+    return {
+      success: true,
+      data: result,
+      message: 'Berhasil mendapatkan total daftar tugas mendesak.',
+    };
+  } catch (e) {
+    const error = e as Error;
+
+    return {
+      success: false,
+      data: null,
+      message: error.message,
+    };
+  }
+}
+
+export async function getLatestAssignments(): Promise<ActionResponse<AssignmentWithStatus[]>> {
+  try {
+    const result = await db
+      .select({
+        id: assignments.id,
+        courseId: assignments.courseId,
+        courseName: courses.name,
+        title: assignments.title,
+        description: assignments.description,
+        type: assignments.type,
+        deadline: assignments.deadline,
+        link: assignments.link,
+        addedBy: assignments.addedBy,
+        createdAt: assignments.createdAt,
+        updatedAt: assignments.updatedAt,
+      })
+      .from(assignments)
+      .leftJoin(courses, eq(courses.id, assignments.courseId))
+      .orderBy(desc(assignments.createdAt))
+      .limit(4);
+
+    return {
+      success: true,
+      data: result as AssignmentWithStatus[],
+      message: 'Berhasil mendapatkan daftar tugas terbaru.',
+    };
+  } catch (e) {
+    const error = e as Error;
 
     return {
       success: false,

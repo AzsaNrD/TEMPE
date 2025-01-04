@@ -35,11 +35,9 @@ const formSchema = z.object({
 type CourseFormValues = z.infer<typeof formSchema>;
 
 export default function EditCourseForm({
-  npm,
   semesters,
   course,
 }: {
-  npm: string;
   semesters: Semester[];
   course: Course & { id: number };
 }) {
@@ -58,7 +56,7 @@ export default function EditCourseForm({
   async function onSubmit(values: CourseFormValues) {
     setIsLoading(true);
     try {
-      const response = await updateCourse(npm, {
+      const response = await updateCourse({
         id: course.id,
         semesterId: Number(values.semesterId),
         name: values.name,

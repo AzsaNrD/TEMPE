@@ -8,9 +8,10 @@ import { ArrowLeft, ArrowRight } from 'lucide-react';
 interface PaginationProps {
   totalPages: number;
   currentPage: number;
+  idSection?: string;
 }
 
-export function PaginationBar({ totalPages, currentPage }: PaginationProps) {
+export function PaginationBar({ totalPages, currentPage, idSection }: PaginationProps) {
   const searchParams = useSearchParams();
   const pathname = usePathname();
   const router = useRouter();
@@ -24,7 +25,11 @@ export function PaginationBar({ totalPages, currentPage }: PaginationProps) {
       params.delete('page');
     }
 
-    router.push(`${pathname}?${params.toString()}`);
+    if (idSection) {
+      router.push(`${pathname}?${params.toString()}#${idSection}`);
+    } else {
+      router.push(`${pathname}?${params.toString()}`);
+    }
   };
 
   return (

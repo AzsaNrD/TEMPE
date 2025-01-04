@@ -57,6 +57,20 @@
       "when": 1734964488228,
       "tag": "0007_add_on_delete_cascade_to_assignments_status",
       "breakpoints": true
+    },
+    {
+      "idx": 8,
+      "version": "7",
+      "when": 1735630227780,
+      "tag": "0008_create_table_announcements",
+      "breakpoints": true
+    },
+    {
+      "idx": 9,
+      "version": "7",
+      "when": 1735870031714,
+      "tag": "0009_update_announcements_title_and_description_length",
+      "breakpoints": true
     }
   ]
 }
