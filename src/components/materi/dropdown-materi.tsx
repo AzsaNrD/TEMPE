@@ -95,7 +95,7 @@ export default function DropdownMateri({ semesters, materi }: DropdownTambahProp
               </DialogDescription>
             </DialogHeader>
             <Separator />
-            <EditCourseForm npm={session.user.npm} course={materi} semesters={semesters} />
+            <EditCourseForm course={materi} semesters={semesters} />
           </DialogContent>
         </Dialog>
 

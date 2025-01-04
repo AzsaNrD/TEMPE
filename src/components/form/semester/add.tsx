@@ -53,8 +53,7 @@ export default function AddSemesterForm({ npm }: { npm: string }) {
           description: response.message,
         });
       }
-    } catch (error) {
-      console.error(error);
+    } catch {
       toast({
         variant: 'destructive',
         title: 'Error',
