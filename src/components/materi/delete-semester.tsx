@@ -52,8 +52,7 @@ export default function AlertDeleteSemester({ semester }: AlertDeleteSemesterPro
           description: result.message,
         });
       }
-    } catch (error) {
-      console.error(error);
+    } catch {
       toast({
         variant: 'destructive',
         title: 'Error',

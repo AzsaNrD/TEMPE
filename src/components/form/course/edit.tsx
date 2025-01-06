@@ -74,8 +74,7 @@ export default function EditCourseForm({
           description: response.message,
         });
       }
-    } catch (error) {
-      console.error(error);
+    } catch {
       toast({
         variant: 'destructive',
         title: 'Error',
