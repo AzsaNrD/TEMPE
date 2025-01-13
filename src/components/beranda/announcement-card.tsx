@@ -11,7 +11,7 @@ export default function AnnouncementCard({ announcement, isAuthorized }: Announc
     <div className="bg-white rounded-md border border-neutral-200 flex items-center justify-between p-4">
       <div className="flex flex-col gap-2">
         <h3 className="font-medium">{announcement.title}</h3>
-        <p className="text-sm text-neutral-600 text-justify">{announcement.description}</p>
+        <p className="text-sm text-neutral-600 text-justify break-all">{announcement.description}</p>
       </div>
       {isAuthorized && (
         <div>
