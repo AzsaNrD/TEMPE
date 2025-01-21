@@ -39,6 +39,15 @@ export async function createAssignmentStatus(
     };
   } catch (e) {
     const error = e as Error;
+
+    if (error.message.includes('unique')) {
+      return {
+        success: false,
+        data: null,
+        message: 'Status tugas sudah ada.',
+      };
+    }
+
     return {
       success: false,
       data: null,
@@ -46,6 +55,7 @@ export async function createAssignmentStatus(
     };
   }
 }
+
 
 export async function deleteAssignmentStatus(
   assignmentId: number,

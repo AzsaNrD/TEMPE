@@ -1,0 +1,1 @@
+ALTER TABLE "assignments_status" ADD CONSTRAINT "assignments_status_assignment_id_user_id_unique" UNIQUE("assignment_id","user_id");
