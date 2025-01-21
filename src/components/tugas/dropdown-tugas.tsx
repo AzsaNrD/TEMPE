@@ -46,7 +46,7 @@ export default function DropdownTugas({ assignment, courses }: DropdownTugasProp
 
   const handleDelete = async () => {
     try {
-      const response = await deleteAssignment('101010101', assignment.id!);
+      const response = await deleteAssignment(assignment.id!);
       if (response.success) {
         toast({
           title: 'Berhasil',

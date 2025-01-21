@@ -15,6 +15,15 @@ export async function insertSemester(
 ): Promise<ActionResponse<string>> {
   try {
     await validateAdminOrDosen();
+
+    if (data.semester > 8) {
+      return {
+        success: false,
+        data: null,
+        message: 'Semester tidak valid. Semester maksimal adalah 8.',
+      };
+    }
+
     await db.insert(semesters).values(data).returning();
 
     revalidatePath('/mata-kuliah');

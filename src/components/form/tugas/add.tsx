@@ -84,7 +84,7 @@ export default function AddAssignmentForm({ courses }: { courses: Course[] }) {
     } catch {
       toast({
         variant: 'destructive',
-        title: 'Error',
+        title: 'Gagal',
         description: 'Terjadi kesalahan saat menambahkan tugas.',
       });
     } finally {

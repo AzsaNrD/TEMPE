@@ -114,7 +114,7 @@ export async function getLatestAssignments(): Promise<ActionResponse<AssignmentW
       })
       .from(assignments)
       .leftJoin(courses, eq(courses.id, assignments.courseId))
-      .orderBy(desc(assignments.createdAt))
+      .orderBy(desc(assignments.deadline))
       .limit(4);
 
     return {
@@ -356,7 +356,7 @@ export async function updateAssignment(
   }
 }
 
-export async function deleteAssignment(npm: string, id: number): Promise<ActionResponse<string>> {
+export async function deleteAssignment(id: number): Promise<ActionResponse<string>> {
   try {
     await validateAdminOrDosen();
 

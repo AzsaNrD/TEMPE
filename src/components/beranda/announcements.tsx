@@ -12,7 +12,10 @@ export default async function Announcements({ page }: { page: string }) {
   const isAuthorized = session?.user?.role === 'admin' || session?.user?.role === 'dosen';
 
   return (
-    <div id='announcements' className='bg-white rounded-lg border border-neutral-200 md:shadow mb-6 p-6'>
+    <div
+      id='announcements'
+      className='bg-white rounded-lg border border-neutral-200 md:shadow mb-6 p-6'
+    >
       <div className='flex justify-between items-center'>
         <h2 className='font-medium text-xl'>📢 Pengumuman</h2>
         {isAuthorized && <DialogAddAnnouncement />}
@@ -24,11 +27,13 @@ export default async function Announcements({ page }: { page: string }) {
           {data.map((item: Announcement) => (
             <AnnouncementCard key={item.id} announcement={item} isAuthorized={isAuthorized} />
           ))}
-          <PaginationBar
-            currentPage={announcements.data?.currentPage ?? 1}
-            totalPages={announcements.data?.totalPages ?? 1}
-            idSection='announcements'
-          />
+          {data.length > 6 && (
+            <PaginationBar
+              currentPage={announcements.data?.currentPage ?? 1}
+              totalPages={announcements.data?.totalPages ?? 1}
+              idSection='announcements'
+            />
+          )}
         </div>
       )}
     </div>

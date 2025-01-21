@@ -51,7 +51,7 @@ export async function AssignmentList({ query, type, status, page }: AssignmentLi
           />
         ))}
       </div>
-      {data.length > 0 && (
+      {data.length > 6 && (
         <div className='my-6'>
           <PaginationBar currentPage={currentPage} totalPages={totalPages} />
         </div>

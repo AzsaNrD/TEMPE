@@ -28,7 +28,7 @@ interface DropdownTambahProps {
 
 export default function DropdownTambah({ semesters }: DropdownTambahProps) {
   const { data: session } = useSession();
-  if (session?.user.role !== 'admin') return null;
+  if (session?.user.role !== 'admin' && session?.user.role !== 'dosen') return null;
   return (
     <DropdownMenu modal={false}>
       <DropdownMenuTrigger asChild>
