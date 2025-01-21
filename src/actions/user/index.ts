@@ -50,7 +50,7 @@ export async function updateUserByNpm(
       .where(eq(users.npm, npm));
     if (!updatedUser.rowCount) throw new Error('Gagal memperbarui pengguna.');
 
-    revalidatePath('/profile');
+    revalidatePath('/profil');
 
     return {
       success: true,
@@ -90,7 +90,7 @@ export async function updateUserPassword(
 
     if (!updatedUser.rowCount) throw new Error('Gagal memperbarui password.');
 
-    revalidatePath('/profile');
+    revalidatePath('/profil');
 
     return {
       success: true,

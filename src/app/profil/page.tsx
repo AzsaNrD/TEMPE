@@ -12,7 +12,7 @@ export default async function Profile() {
   return (
     <div className='flex flex-col gap-8'>
       <div>
-        <h1 className='text-2xl font-semibold'>Profile</h1>
+        <h1 className='text-2xl font-semibold'>Profil</h1>
         <p className='mt-2 text-neutral-600 text-sm'>
           Kelola informasi akunmu atau perbarui kata sandi di sini.
         </p>

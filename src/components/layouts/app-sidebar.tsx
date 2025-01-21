@@ -70,10 +70,10 @@ export function AppSidebar() {
               <SidebarGroupContent>
                 <SidebarMenu>
                   <SidebarMenuItem>
-                    <SidebarMenuButton isActive={pathname === '/profile'} asChild>
-                      <Link href='/profile'>
+                    <SidebarMenuButton isActive={pathname === '/profil'} asChild>
+                      <Link href='/profil'>
                         <User />
-                        <span>Profile</span>
+                        <span>Profil</span>
                       </Link>
                     </SidebarMenuButton>
                   </SidebarMenuItem>
