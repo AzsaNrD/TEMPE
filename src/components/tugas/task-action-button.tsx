@@ -8,6 +8,7 @@ interface TaskActionButtonProps {
   handleSubmitTask: () => Promise<void>;
   handleUndoTask: () => Promise<void>;
   isFullWidth?: boolean;
+  loading?: boolean;
 }
 
 export default function TaskActionButton({
@@ -15,6 +16,7 @@ export default function TaskActionButton({
   handleSubmitTask,
   handleUndoTask,
   isFullWidth,
+  loading,
 }: TaskActionButtonProps) {
   const { toast } = useToast();
 
@@ -30,6 +32,7 @@ export default function TaskActionButton({
           })
         }
         className={isFullWidth ? 'w-full' : ''}
+        disabled={loading}
       >
         Tandai Selesai
       </Button>
@@ -42,11 +45,12 @@ export default function TaskActionButton({
       variant='outline'
       onClick={handleUndoTask}
       className={isFullWidth ? 'w-full' : ''}
+      disabled={loading}
     >
       Batalkan Selesai
     </Button>
   ) : (
-    <Button size='sm' onClick={handleSubmitTask} className={isFullWidth ? 'w-full' : ''}>
+    <Button size='sm' onClick={handleSubmitTask} className={isFullWidth ? 'w-full' : ''} disabled={loading}>
       Tandai Selesai
     </Button>
   );

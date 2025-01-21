@@ -11,6 +11,7 @@ import { createAssignmentStatus, deleteAssignmentStatus } from '@/actions/assign
 import { useToast } from '@/hooks/use-toast';
 import AssignmentSheet from './assignment-sheet';
 import TaskActionButton from './task-action-button';
+import { useState } from 'react';
 
 interface AssignmentCardProps {
   assignment: AssignmentWithStatus;
@@ -19,9 +20,11 @@ interface AssignmentCardProps {
 }
 
 export function AssignmentCard({ assignment, courses, isLoggedIn }: AssignmentCardProps) {
+  const [loading, setIsLoading] = useState(false);
   const { toast } = useToast();
 
   const handleSubmitTask = async () => {
+    setIsLoading(true);
     if (!assignment.id || !assignment.courseId) {
       return;
     }
@@ -45,9 +48,11 @@ export function AssignmentCard({ assignment, courses, isLoggedIn }: AssignmentCa
           response.message || `Gagal menandai tugas "${assignment.title}" sebagai selesai.`,
       });
     }
+    setIsLoading(false);
   };
 
   const handleUndoTask = async () => {
+    setIsLoading(true);
     if (!assignment.id) {
       return;
     }
@@ -66,6 +71,7 @@ export function AssignmentCard({ assignment, courses, isLoggedIn }: AssignmentCa
         description: response.message || `Gagal membatalkan tugas "${assignment.title}" selesai.`,
       });
     }
+    setIsLoading(false);
   };
 
   return (
@@ -105,11 +111,13 @@ export function AssignmentCard({ assignment, courses, isLoggedIn }: AssignmentCa
           assignment={assignment}
           handleSubmitTask={handleSubmitTask}
           handleUndoTask={handleUndoTask}
+          loading={loading}
         />
         <TaskActionButton
           isCompleted={assignment.isCompleted}
           handleSubmitTask={handleSubmitTask}
           handleUndoTask={handleUndoTask}
+          loading={loading}
         />
       </div>
     </div>
