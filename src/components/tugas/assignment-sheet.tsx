@@ -13,12 +13,14 @@ interface AssignmentSheetProps {
   assignment: AssignmentWithStatus;
   handleSubmitTask: () => Promise<void>;
   handleUndoTask: () => Promise<void>;
+  loading: boolean;
 }
 
 export default function AssignmentSheet({
   assignment,
   handleSubmitTask,
   handleUndoTask,
+  loading
 }: AssignmentSheetProps) {
   const { title, description, type, isCompleted, deadline, link, courseName } = assignment;
 
@@ -82,6 +84,7 @@ export default function AssignmentSheet({
             handleSubmitTask={handleSubmitTask}
             handleUndoTask={handleUndoTask}
             isFullWidth
+            loading={loading}
           />
         </div>
       </SheetContent>
